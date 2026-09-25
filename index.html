@@ -11,228 +11,227 @@
 <meta property="og:url" content="https://hypeyoo.com">
 <meta property="og:image" content="https://hypeyoo.com/assets/app-icon.png">
 <link rel="icon" type="image/png" href="assets/app-icon.png">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
 <style>
 :root{
-  --bg:#07090F; --bg2:#0A0E18;
-  --ink:#ECF1FC; --ink-2:#9AA6C4; --ink-3:#68748E;
-  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.14);
-  --glass:rgba(255,255,255,.045); --glass-2:rgba(255,255,255,.07);
-  --cyan:#3EE0FF; --blue:#4D7CFE; --violet:#9B7BFF; --pink:#FF5CA8;
-  --maxw:1120px;
+  --bg:#06080F;
+  --ink:#EAF0FC; --ink-2:#98A5C4; --ink-3:#606E8A;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.04); --glass-2:rgba(255,255,255,.075);
+  --cyan:#38E0FF; --blue:#4B7BFF; --violet:#9A7BFF; --pink:#FF5CA8;
+  --grad:linear-gradient(120deg,#3FC6FF 0%,#4B7BFF 52%,#9A7BFF 100%);
+  --r-pill:999px; --r-card:22px; --r-sm:14px;
+  --maxw:1160px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   font-family:"Noto Sans SC","Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  background:var(--bg);color:var(--ink);line-height:1.75;
+  background:var(--bg);color:var(--ink);line-height:1.72;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-::selection{background:rgba(62,224,255,.28)}
+::selection{background:rgba(56,224,255,.26)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .en{font-family:"Space Grotesk",sans-serif}
 
-/* ===== 背景：网格 + 柔和光晕 ===== */
-.bg-layer{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+/* ===== 背景层 ===== */
+.bg-layer{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
 .bg-grid{position:absolute;inset:0;
-  background-image:linear-gradient(rgba(120,150,255,.05) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(120,150,255,.05) 1px,transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);}
-.bg-glow{position:absolute;border-radius:50%;filter:blur(110px);opacity:.5}
-.bg-glow.g1{width:560px;height:560px;top:-200px;left:-120px;
-  background:radial-gradient(circle,rgba(77,124,254,.34),transparent 65%)}
-.bg-glow.g2{width:480px;height:480px;top:-120px;right:-100px;
-  background:radial-gradient(circle,rgba(155,123,255,.26),transparent 65%)}
-.bg-glow.g3{width:520px;height:520px;top:720px;left:50%;transform:translateX(-50%);
-  background:radial-gradient(circle,rgba(62,224,255,.12),transparent 65%)}
+  background-image:linear-gradient(rgba(120,150,255,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(120,150,255,.045) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 92% 56% at 50% -2%,#000 34%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 92% 56% at 50% -2%,#000 34%,transparent 78%);}
+.bg-glow{position:absolute;border-radius:50%;filter:blur(120px)}
+.bg-glow.g1{width:600px;height:600px;top:-220px;left:-140px;
+  background:radial-gradient(circle,rgba(75,123,254,.32),transparent 66%)}
+.bg-glow.g2{width:520px;height:520px;top:-140px;right:-120px;
+  background:radial-gradient(circle,rgba(154,123,255,.24),transparent 66%)}
+.bg-glow.g3{width:560px;height:560px;top:820px;left:52%;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(56,224,255,.1),transparent 66%)}
+.bg-noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E")}
 
 /* ===== 导航 ===== */
 .nav{position:sticky;top:0;z-index:100;
-  background:rgba(7,9,15,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:rgba(6,8,15,.72);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
   border-bottom:1px solid var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
 .brand{display:flex;align-items:center}
 .brand img{height:26px;width:auto}
-.nav-links{display:flex;align-items:center;gap:30px;font-size:14px;color:var(--ink-2)}
+.nav-links{display:flex;align-items:center;gap:32px;font-size:14.5px;color:var(--ink-2)}
 .nav-links a:not(.btn){transition:color .2s}
 .nav-links a:not(.btn):hover{color:var(--ink)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;
-  font-size:14.5px;font-weight:500;border-radius:12px;padding:10px 20px;cursor:pointer;
-  border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
+  font-size:14.5px;font-weight:500;border-radius:var(--r-pill);padding:11px 22px;cursor:pointer;
+  border:1px solid transparent;transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .25s,background .25s,border-color .25s;
   white-space:nowrap}
-.btn:active{transform:translateY(1px)}
-.btn-primary{color:#fff;
-  background:linear-gradient(135deg,#35B7FF 0%,#4D7CFE 55%,#7C6BFF 100%);
-  box-shadow:0 6px 24px -6px rgba(77,124,254,.6),inset 0 1px 0 rgba(255,255,255,.25)}
-.btn-primary:hover{box-shadow:0 10px 32px -6px rgba(77,124,254,.75),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn-primary{color:#04121F;font-weight:600;background:var(--grad);
+  box-shadow:0 8px 26px -8px rgba(75,123,254,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -8px rgba(75,123,254,.85),inset 0 1px 0 rgba(255,255,255,.5)}
 .btn-ghost{background:var(--glass);color:var(--ink);border-color:var(--line-2)}
-.btn-ghost:hover{background:var(--glass-2);border-color:rgba(255,255,255,.24)}
-.nav-links .btn{padding:8px 16px;border-radius:10px}
+.btn-ghost:hover{background:var(--glass-2);border-color:rgba(255,255,255,.26)}
+.nav-links .btn{padding:9px 18px}
 @media(max-width:760px){.nav-links a:not(.btn):not(.nav-join){display:none}.brand img{height:22px}}
 
 /* ===== Hero ===== */
-.hero{padding:88px 0 64px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+.hero{padding:76px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:60px;align-items:center}
 .badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-2);
-  border:1px solid var(--line-2);border-radius:999px;padding:6px 15px;background:var(--glass);margin-bottom:26px}
+  border:1px solid var(--line-2);border-radius:var(--r-pill);padding:6px 15px;background:var(--glass);margin-bottom:26px}
 .badge i{width:7px;height:7px;border-radius:50%;background:var(--cyan);font-style:normal;
-  box-shadow:0 0 10px var(--cyan)}
-.hero h1{font-size:clamp(34px,5vw,56px);line-height:1.18;font-weight:700;letter-spacing:-.01em;margin-bottom:20px}
-.hero h1 .grad{background:linear-gradient(120deg,#FFFFFF 20%,#8FD8FF 55%,#B4A4FF 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .sub{font-size:clamp(17px,1.8vw,20px);font-weight:500;color:#D4E0F8;margin-bottom:16px}
-.hero .desc{font-size:15px;color:var(--ink-2);max-width:500px;margin-bottom:32px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
-.hero-note{font-size:13px;color:var(--ink-3)}
+  box-shadow:0 0 10px var(--cyan);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(34px,4.9vw,54px);line-height:1.2;font-weight:700;letter-spacing:-.015em;margin-bottom:22px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .desc{font-size:16.5px;color:var(--ink-2);max-width:474px;margin-bottom:34px;line-height:1.75}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
 
-/* 右侧虚拟直播间合成视觉 */
-.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:560px}
-.stage-ring{position:absolute;width:430px;height:430px;border-radius:50%;
-  border:1px solid rgba(120,160,255,.14);
-  background:radial-gradient(circle,rgba(77,124,254,.14) 0%,transparent 65%)}
-.stage-ring::before{content:"";position:absolute;inset:38px;border-radius:50%;
-  border:1px dashed rgba(120,160,255,.18);animation:spin 40s linear infinite}
+.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:580px}
+.stage-ring{position:absolute;width:452px;height:452px;border-radius:50%;
+  border:1px solid rgba(120,160,255,.13);
+  background:radial-gradient(circle,rgba(75,123,254,.13) 0%,transparent 64%)}
+.stage-ring::before{content:"";position:absolute;inset:40px;border-radius:50%;
+  border:1px dashed rgba(120,160,255,.16);animation:spin 44s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.phone{position:relative;width:288px;border-radius:40px;padding:9px;
-  background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04) 40%,rgba(120,140,255,.12));
-  box-shadow:0 50px 100px -30px rgba(0,0,0,.8),0 0 80px -20px rgba(77,124,254,.45)}
-.phone-screen{border-radius:32px;overflow:hidden;background:#0B0E17;position:relative}
+.phone{position:relative;width:296px;border-radius:42px;padding:9px;
+  background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.04) 42%,rgba(120,140,255,.12));
+  box-shadow:0 54px 110px -32px rgba(0,0,0,.82),0 0 90px -22px rgba(75,123,254,.42)}
+.phone-screen{border-radius:34px;overflow:hidden;background:#0B0E17;position:relative}
 .phone-screen img{width:100%;aspect-ratio:1000/1341;object-fit:cover}
 .phone-tag{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:7px;
   font-size:11px;color:#DFF7FF;background:rgba(8,12,22,.62);border:1px solid rgba(120,220,255,.3);
-  padding:5px 11px;border-radius:999px;backdrop-filter:blur(8px)}
-.phone-tag i{width:6px;height:6px;border-radius:50%;background:var(--cyan);font-style:normal;
-  box-shadow:0 0 8px var(--cyan)}
-.phone-cap{position:absolute;left:0;right:0;bottom:0;padding:26px 16px 14px;font-size:11.5px;color:#DCE8FF;
-  text-align:center;background:linear-gradient(transparent,rgba(6,8,14,.85));
-  line-height:1.55}
-.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;
-  background:rgba(13,18,32,.72);border:1px solid var(--line-2);backdrop-filter:blur(14px);
+  padding:5px 11px;border-radius:var(--r-pill);backdrop-filter:blur(8px)}
+.phone-tag i{width:6px;height:6px;border-radius:50%;background:var(--cyan);font-style:normal;box-shadow:0 0 8px var(--cyan)}
+.phone-cap{position:absolute;left:0;right:0;bottom:0;padding:28px 16px 14px;font-size:11.5px;color:#DCE8FF;
+  text-align:center;background:linear-gradient(transparent,rgba(6,8,14,.86));line-height:1.55}
+.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);
+  background:rgba(13,18,32,.74);border:1px solid var(--line-2);backdrop-filter:blur(14px);
   font-size:12.5px;color:#D8E3FA;box-shadow:0 18px 40px -18px rgba(0,0,0,.8)}
 .chip b{font-weight:500}
 .chip .dot{width:8px;height:8px;border-radius:50%;flex:none}
-.chip.c1{top:64px;left:-6px;animation:float 6s ease-in-out infinite}
-.chip.c2{top:200px;right:-14px;animation:float 7s ease-in-out infinite .8s}
-.chip.c3{bottom:86px;left:-26px;animation:float 6.6s ease-in-out infinite 1.4s}
+.chip.c1{top:70px;left:-8px;animation:float 6s ease-in-out infinite}
+.chip.c2{top:214px;right:-16px;animation:float 7s ease-in-out infinite .8s}
+.chip.c3{bottom:90px;left:-28px;animation:float 6.6s ease-in-out infinite 1.4s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .hero{padding:56px 0 48px}
-  .stage{min-height:0;margin-top:8px}
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .hero{padding:52px 0 44px}
+  .stage{min-height:0;margin-top:6px}
   .stage-ring{width:340px;height:340px}
-  .phone{width:250px}
+  .phone{width:248px}
   .chip.c3{left:0}
 }
 
-/* ===== 合规说明条 ===== */
-.notice{margin:8px auto 0;max-width:var(--maxw);padding:0 24px}
-.notice-inner{display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(120,200,255,.22);
-  background:linear-gradient(120deg,rgba(62,224,255,.07),rgba(155,123,255,.06));
-  border-radius:16px;padding:18px 22px}
-.notice-inner svg{width:20px;height:20px;flex:none;margin-top:2px;stroke:var(--cyan);fill:none;
+/* ===== 合规声明 ===== */
+.notice{margin-top:6px}
+.notice-inner{display:flex;gap:15px;align-items:flex-start;border:1px solid rgba(120,200,255,.2);
+  background:linear-gradient(120deg,rgba(56,224,255,.06),rgba(154,123,255,.05));
+  border-radius:var(--r-card);padding:20px 24px}
+.notice-inner svg{width:21px;height:21px;flex:none;margin-top:2px;stroke:var(--cyan);fill:none;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.notice-inner p{font-size:13.5px;color:#B9C8E6;line-height:1.7}
+.notice-inner p{font-size:14px;color:#BAC8E6;line-height:1.72}
+.notice-inner b{color:#E4ECFB;font-weight:500}
 
-/* ===== 通用区块 ===== */
-.section{padding:96px 0;position:relative}
-.sec-head{max-width:680px;margin-bottom:52px}
-.sec-head.center{margin:0 auto 56px;text-align:center}
-.kicker{font-family:"Space Grotesk",sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;
-  color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.sec-head.center .kicker{justify-content:center}
-.kicker::before{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
-.sec-head.center .kicker::before{display:none}
-.sec-title{font-size:clamp(25px,3vw,34px);font-weight:700;line-height:1.3;letter-spacing:-.01em;margin-bottom:14px}
-.sec-sub{font-size:15px;color:var(--ink-2);line-height:1.8}
+/* ===== 区块 ===== */
+.section{padding:104px 0;position:relative}
+.sec-head{max-width:660px;margin-bottom:56px}
+.sec-head.center{margin:0 auto 60px;text-align:center}
+.sec-title{font-size:clamp(26px,3.1vw,36px);font-weight:700;line-height:1.28;letter-spacing:-.015em;margin-bottom:16px}
+.sec-title .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-sub{font-size:15.5px;color:var(--ink-2);line-height:1.78}
+@media(max-width:760px){.section{padding:68px 0}.sec-head{margin-bottom:40px}}
 
-/* ===== 功能 4 卡 ===== */
+/* ===== 功能 ===== */
 .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.feat{position:relative;border:1px solid var(--line);border-radius:20px;padding:30px 28px;
-  background:linear-gradient(165deg,rgba(255,255,255,.06),rgba(255,255,255,.02) 55%);
-  transition:border-color .25s,transform .25s,background .25s;overflow:hidden}
-.feat::after{content:"";position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity .25s;
-  background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(77,124,254,.14),transparent 60%);
-  pointer-events:none}
-.feat:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.feat{position:relative;border:1px solid var(--line);border-radius:var(--r-card);padding:32px 30px;
+  background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015) 56%);
+  transition:border-color .28s,transform .28s;overflow:hidden}
+.feat::after{content:"";position:absolute;inset:0;border-radius:var(--r-card);opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(75,123,254,.16),transparent 62%);pointer-events:none}
+.feat:hover{border-color:var(--line-2);transform:translateY(-4px)}
 .feat:hover::after{opacity:1}
-.feat-ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;border:1px solid var(--line-2)}
-.feat-ico svg{width:23px;height:23px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.feat:nth-child(1) .feat-ico{background:rgba(62,224,255,.1);stroke:var(--cyan)}
-.feat:nth-child(2) .feat-ico{background:rgba(77,124,254,.12);stroke:#7BA4FF}
-.feat:nth-child(3) .feat-ico{background:rgba(155,123,255,.12);stroke:#B7A1FF}
+.feat-ico{width:48px;height:48px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;border:1px solid var(--line-2)}
+.feat-ico svg{width:24px;height:24px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.feat:nth-child(1) .feat-ico{background:rgba(56,224,255,.1);stroke:var(--cyan)}
+.feat:nth-child(2) .feat-ico{background:rgba(75,123,254,.12);stroke:#7BA4FF}
+.feat:nth-child(3) .feat-ico{background:rgba(154,123,255,.12);stroke:#B7A1FF}
 .feat:nth-child(4) .feat-ico{background:rgba(255,92,168,.1);stroke:#FF8AC2}
-.feat h3{font-size:17.5px;font-weight:700;margin-bottom:10px}
-.feat p{font-size:14px;color:var(--ink-2);line-height:1.75}
-@media(max-width:760px){.feat-grid{grid-template-columns:1fr}.section{padding:64px 0}}
+.feat h3{font-size:18px;font-weight:700;margin-bottom:11px}
+.feat p{font-size:14px;color:var(--ink-2);line-height:1.76}
+@media(max-width:760px){.feat-grid{grid-template-columns:1fr}}
 
-/* ===== 场景展示 ===== */
-.scene-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:96px}
-.scene-row:last-child{margin-bottom:0}
-.scene-row.rev .scene-text{order:2}
-.scene-phone{display:flex;justify-content:center}
-.scene-phone .phone{width:270px}
-.scene-phone .phone-screen img{aspect-ratio:auto;height:520px;width:100%;object-fit:cover;object-position:top}
-.scene-phone .phone-cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;font-size:11px}
-.scene-kicker{font-family:"Space Grotesk",sans-serif;font-size:12px;letter-spacing:.14em;color:var(--violet);
-  font-weight:600;margin-bottom:12px}
-.scene-text h3{font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.3;margin-bottom:14px}
-.scene-text p{font-size:14.5px;color:var(--ink-2);margin-bottom:14px;max-width:440px}
-.scene-list{list-style:none;margin-top:18px}
-.scene-list li{position:relative;padding:8px 0 8px 26px;font-size:14px;color:var(--ink-2)}
-.scene-list li::before{content:"";position:absolute;left:2px;top:16px;width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 0 8px rgba(62,224,255,.6)}
-@media(max-width:860px){
-  .scene-row{grid-template-columns:1fr;gap:36px;margin-bottom:64px}
-  .scene-row.rev .scene-text{order:0}
-}
+/* ===== 场景 1：非对称 split ===== */
+.stage-row{display:grid;grid-template-columns:1fr 1fr;gap:66px;align-items:center}
+.stage-row .copy h3{font-size:clamp(23px,2.5vw,30px);font-weight:700;line-height:1.3;margin-bottom:16px;letter-spacing:-.01em}
+.stage-row .copy p{font-size:15px;color:var(--ink-2);margin-bottom:18px;max-width:440px;line-height:1.78}
+.pt-list{list-style:none;margin-top:20px}
+.pt-list li{position:relative;padding:9px 0 9px 30px;font-size:14.5px;color:var(--ink-2)}
+.pt-list li svg{position:absolute;left:0;top:12px;width:18px;height:18px;stroke:var(--cyan);fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stage-shot{display:flex;justify-content:center}
+.stage-shot .phone{width:274px}
+.stage-shot .phone-screen img{aspect-ratio:auto;height:540px;object-fit:cover;object-position:top}
+@media(max-width:860px){.stage-row{grid-template-columns:1fr;gap:38px}}
+
+/* ===== 场景 2：双屏画廊 ===== */
+.gallery{margin-top:26px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.gcard{position:relative;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;
+  background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.012));padding:28px 28px 0}
+.gcard .g-txt{margin-bottom:22px}
+.gcard h4{font-size:18px;font-weight:700;margin-bottom:9px}
+.gcard p{font-size:13.5px;color:var(--ink-2);line-height:1.72}
+.gcard .g-shot{position:relative;height:300px;border-radius:20px 20px 0 0;overflow:hidden;
+  border:1px solid var(--line);border-bottom:none;
+  -webkit-mask-image:linear-gradient(#000 74%,transparent);mask-image:linear-gradient(#000 74%,transparent)}
+.gcard .g-shot img{width:100%;object-fit:cover;object-position:top}
+@media(max-width:760px){.gallery-grid{grid-template-columns:1fr}.gcard .g-shot{height:280px}}
 
 /* ===== 权限 ===== */
 .perm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.perm{border:1px solid var(--line);border-radius:18px;padding:26px 24px;background:var(--glass)}
-.perm .feat-ico{margin-bottom:18px}
-.perm:nth-child(1) .feat-ico{background:rgba(62,224,255,.1);stroke:var(--cyan)}
-.perm:nth-child(2) .feat-ico{background:rgba(77,124,254,.12);stroke:#7BA4FF}
-.perm:nth-child(3) .feat-ico{background:rgba(155,123,255,.12);stroke:#B7A1FF}
-.perm h4{font-size:16px;font-weight:700;margin-bottom:8px}
-.perm p{font-size:13.5px;color:var(--ink-2);line-height:1.7}
-.perm-lead{font-size:14.5px;color:var(--ink-2);max-width:720px;margin:22px auto 0;text-align:center;line-height:1.8}
-.perm-lead b{color:#D4E0F8;font-weight:500}
+.perm{border:1px solid var(--line);border-radius:var(--r-card);padding:28px 26px;background:var(--glass)}
+.perm .feat-ico{margin-bottom:20px}
+.perm:nth-child(1) .feat-ico{background:rgba(56,224,255,.1);stroke:var(--cyan)}
+.perm:nth-child(2) .feat-ico{background:rgba(75,123,254,.12);stroke:#7BA4FF}
+.perm:nth-child(3) .feat-ico{background:rgba(154,123,255,.12);stroke:#B7A1FF}
+.perm h4{font-size:16.5px;font-weight:700;margin-bottom:9px}
+.perm p{font-size:13.5px;color:var(--ink-2);line-height:1.72}
+.perm-foot{font-size:14.5px;color:var(--ink-2);max-width:660px;margin:26px auto 0;text-align:center;line-height:1.8}
+.perm-foot a{color:#8FD8FF;border-bottom:1px solid rgba(143,216,255,.4)}
+.perm-foot a:hover{border-color:#8FD8FF}
 @media(max-width:860px){.perm-grid{grid-template-columns:1fr}}
 
 /* ===== TestFlight ===== */
 .tf{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:
-    radial-gradient(700px 340px at 50% -40%,rgba(77,124,254,.22),transparent 70%),
-    linear-gradient(180deg,#0A0E1A,#07090F)}
-.tf-inner{text-align:center;padding:104px 24px;max-width:720px;margin:0 auto}
-.tf .sec-title{font-size:clamp(26px,3.4vw,38px)}
-.tf p{color:var(--ink-2);font-size:15px;margin-bottom:34px}
+  background:radial-gradient(720px 340px at 50% -30%,rgba(75,123,254,.2),transparent 70%),linear-gradient(180deg,#0A0E1A,#06080F)}
+.tf-inner{text-align:center;padding:108px 24px;max-width:700px;margin:0 auto}
+.tf .sec-title{font-size:clamp(27px,3.5vw,40px)}
+.tf p{color:var(--ink-2);font-size:15.5px;margin:0 auto 34px;max-width:560px}
 .btn-wait{cursor:default;background:var(--glass);border:1px dashed rgba(255,255,255,.28);color:var(--ink-2)}
-.tf-note{font-size:13px;color:var(--ink-3);margin-top:20px}
-.tf-links{margin-top:16px;font-size:13.5px;color:var(--ink-3)}
+.tf-note{font-size:13.5px;color:var(--ink-3);margin-top:22px;line-height:1.8}
+.tf-note a{color:#8FD8FF}
+.tf-links{margin-top:14px;font-size:13.5px;color:var(--ink-3)}
 .tf-links a{color:#8FD8FF;border-bottom:1px solid rgba(143,216,255,.4)}
-.tf-links a:hover{border-color:#8FD8FF}
 
 /* ===== 页脚 ===== */
-footer{padding:44px 0 48px}
-.foot-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-.foot-brand{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2)}
-.foot-brand img{height:20px;opacity:.92}
-.foot-nav{display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-3)}
+footer{padding:48px 0 52px}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-brand img{height:22px;opacity:.94}
+.foot-nav{display:flex;gap:28px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-3)}
 .foot-nav a:hover{color:var(--ink)}
-.foot-copy{width:100%;font-size:12.5px;color:var(--ink-3);margin-top:6px}
+.foot-copy{width:100%;font-size:12.5px;color:var(--ink-3);margin-top:8px;line-height:1.7}
 
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
-  .stage-ring::before,.chip{animation:none}
+  .stage-ring::before,.chip,.badge i{animation:none}
 }
 </style>
 </head>
@@ -244,8 +243,8 @@ footer{padding:44px 0 48px}
   <div class="bg-glow g2"></div>
   <div class="bg-glow g3"></div>
 </div>
+<div class="bg-noise"></div>
 
-<!-- ===== 导航 ===== -->
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="./"><img src="assets/logo-wordmark.png" alt="HypeYo"></a>
@@ -258,51 +257,45 @@ footer{padding:44px 0 48px}
   </div>
 </header>
 
-<!-- ===== Hero ===== -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
       <div class="badge"><i></i>AI 互动娱乐 · TestFlight 测试中</div>
-      <h1>HypeYo<br><span class="grad">和 AI 虚拟角色一起，</span><br><span class="grad">开一场只属于你的互动直播</span></h1>
-      <p class="sub">和 AI 虚拟角色一起开一场只属于你的互动直播。</p>
-      <p class="desc">HypeYo 是一款 AI 互动娱乐 App。你可以通过文字、语音和本地画面与 AI 虚拟角色互动，体验虚拟观众反馈、粉丝聊天、社群消息和账号同步。</p>
+      <h1>和 AI 虚拟角色一起，<br><span class="grad">开一场只属于你的直播</span></h1>
+      <p class="desc">HypeYo 是一款 AI 互动娱乐 App。通过文字、语音和本地画面与 AI 虚拟角色互动，体验虚拟观众反馈、粉丝聊天和社群消息。</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#testflight">加入 TestFlight</a>
         <a class="btn btn-ghost" href="privacy/">查看隐私政策</a>
       </div>
-      <p class="hero-note">直播间里的角色与观众全部由 AI 生成，没有真人主播，也没有陌生人。</p>
     </div>
 
     <div class="stage">
       <div class="stage-ring"></div>
-      <div class="phone">
+      <div class="phone reveal">
         <div class="phone-screen">
           <img src="assets/shot-live.jpg" alt="HypeYo 虚拟直播间：AI 虚拟角色与虚拟观众弹幕">
           <div class="phone-tag"><i></i>AI 虚拟直播间</div>
           <div class="phone-cap">画面中的角色与观众均为 AI 生成，不是真人直播</div>
         </div>
       </div>
-      <div class="chip c1"><span class="dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></span><span><b>虚拟观众</b> · 弹幕实时回应</span></div>
-      <div class="chip c2"><span class="dot" style="background:var(--violet);box-shadow:0 0 8px var(--violet)"></span><span><b>AI 角色</b> · 正在回应你</span></div>
-      <div class="chip c3"><span class="dot" style="background:var(--pink);box-shadow:0 0 8px var(--pink)"></span><span><b>虚拟粉丝</b> · 会记住你</span></div>
+      <div class="chip c1"><span class="dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></span><span><b>虚拟观众</b> 弹幕实时回应</span></div>
+      <div class="chip c2"><span class="dot" style="background:var(--violet);box-shadow:0 0 8px var(--violet)"></span><span><b>AI 角色</b> 正在回应你</span></div>
+      <div class="chip c3"><span class="dot" style="background:var(--pink);box-shadow:0 0 8px var(--pink)"></span><span><b>虚拟粉丝</b> 会记住你</span></div>
+    </div>
+  </div>
+
+  <div class="wrap notice">
+    <div class="notice-inner reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <p><b>没有真人主播，也没有陌生人。</b>HypeYo 当前不提供真人用户之间的直播、社交、内容发布、交易、打赏、带货或信息撮合服务；App 内互动内容均由 AI 生成，仅用于娱乐和测试体验。</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 合规说明 ===== -->
-<div class="notice">
-  <div class="notice-inner">
-    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-    <p>HypeYo 当前不提供真人用户之间的直播、社交、内容发布、交易、打赏、带货或信息撮合服务。App 内互动内容由 AI 生成，仅用于娱乐和测试体验。</p>
-  </div>
-</div>
-
-<!-- ===== 功能 ===== -->
 <section class="section" id="features">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">FEATURES</div>
-      <h2 class="sec-title">一个完全属于你的 AI 虚拟直播间</h2>
+      <h2 class="sec-title">一个完全属于你的<br><span class="grad">AI 虚拟直播间</span></h2>
       <p class="sec-sub">从角色互动到观众反馈、粉丝关系和账号同步，所有体验都发生在你与 AI 之间。</p>
     </div>
 
@@ -315,7 +308,7 @@ footer{padding:44px 0 48px}
       <div class="feat reveal">
         <div class="feat-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>虚拟观众反馈</h3>
-        <p>根据你的表达和互动场景，生成模拟直播间里的虚拟观众回应：弹幕、进场和表情都会跟着现场气氛变化。</p>
+        <p>根据你的表达和互动场景，生成模拟直播间里的虚拟观众回应，弹幕、进场和表情都会跟着现场气氛变化。</p>
       </div>
       <div class="feat reveal">
         <div class="feat-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></svg></div>
@@ -331,87 +324,59 @@ footer{padding:44px 0 48px}
   </div>
 </section>
 
-<!-- ===== 产品介绍：场景展示 ===== -->
-<section class="section" id="product">
+<section class="section" id="product" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="kicker">PRODUCT</div>
       <h2 class="sec-title">走进 HypeYo 的互动现场</h2>
-      <p class="sec-sub">每一个画面里，和你互动的都是 AI——节奏由你决定，没有真人压力。</p>
+      <p class="sec-sub">每一个画面里，和你互动的都是 AI。节奏由你决定，没有真人压力。</p>
     </div>
 
-    <div class="scene-row">
-      <div class="scene-text reveal">
-        <div class="scene-kicker">VIRTUAL STAGE</div>
+    <div class="stage-row reveal">
+      <div class="copy">
         <h3>一个人的虚拟直播间</h3>
         <p>开播后，AI 虚拟角色会与你对话，虚拟观众同步发来弹幕和表情。你只需要做自己，热闹或安静都由你的节奏决定。</p>
-        <ul class="scene-list">
-          <li>虚拟观众弹幕随你的表达实时变化</li>
-          <li>角色会结合语音、文字与本地画面回应</li>
-          <li>画面仅在本地使用，不会公开推流</li>
+        <ul class="pt-list">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>虚拟观众弹幕随你的表达实时变化</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>角色会结合语音、文字与本地画面回应</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>画面仅在本地使用，不会公开推流</li>
         </ul>
       </div>
-      <div class="scene-phone reveal">
+      <div class="stage-shot">
         <div class="phone">
           <div class="phone-screen">
             <img src="assets/shot-topic.jpg" alt="AI 私人直播间话题挑战界面">
-            <div class="phone-cap">AI 私人直播间 · 话题挑战由 AI 观众驱动</div>
+            <div class="phone-cap">AI 私人直播间，话题挑战由 AI 观众驱动</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="scene-row rev">
-      <div class="scene-text reveal">
-        <div class="scene-kicker">FAN CHAT</div>
-        <h3>会陪你聊天的虚拟粉丝</h3>
-        <p>在铁粉群里，虚拟粉丝会主动回复你、关心你。它们有各自的等级与性格，互动越多，关系和话题越连贯。</p>
-        <ul class="scene-list">
-          <li>群聊与私信均由 AI 虚拟粉丝生成</li>
-          <li>粉丝会记住你们之前聊过的内容</li>
-          <li>界面明确标注「内容由 AI 生成」</li>
-        </ul>
-      </div>
-      <div class="scene-phone reveal">
-        <div class="phone">
-          <div class="phone-screen">
-            <img src="assets/shot-chat.jpg" alt="虚拟粉丝群聊界面，内容由 AI 生成">
-            <div class="phone-cap">铁粉群 · 消息全部来自 AI 虚拟粉丝</div>
+    <div class="gallery reveal">
+      <div class="gallery-grid">
+        <div class="gcard">
+          <div class="g-txt">
+            <h4>会陪你聊天的虚拟粉丝</h4>
+            <p>铁粉群里的虚拟粉丝会主动回复、关心你，各自有等级和性格，互动越多越连贯，界面明确标注「内容由 AI 生成」。</p>
           </div>
+          <div class="g-shot"><img src="assets/shot-chat.jpg" alt="虚拟粉丝群聊界面，内容由 AI 生成"></div>
         </div>
-      </div>
-    </div>
-
-    <div class="scene-row">
-      <div class="scene-text reveal">
-        <div class="scene-kicker">COMMUNITY</div>
-        <h3>持续更新的社群动态</h3>
-        <p>即使没有开播，虚拟粉丝也会在私信里给你留言。下一次打开 App，等待你的是一段连续的关系，而不是从零开始。</p>
-        <ul class="scene-list">
-          <li>私信列表由虚拟粉丝的 AI 消息组成</li>
-          <li>聊天记录与粉丝状态可随账号同步</li>
-          <li>不包含任何真人用户或信息撮合</li>
-        </ul>
-      </div>
-      <div class="scene-phone reveal">
-        <div class="phone">
-          <div class="phone-screen">
-            <img src="assets/shot-inbox.jpg" alt="虚拟粉丝私信列表界面">
-            <div class="phone-cap">私信 · 虚拟粉丝之间的连续陪伴</div>
+        <div class="gcard">
+          <div class="g-txt">
+            <h4>持续更新的社群动态</h4>
+            <p>即使没有开播，虚拟粉丝也会在私信里给你留言。下一次打开 App，等待你的是一段连续的关系，而不是从零开始。</p>
           </div>
+          <div class="g-shot"><img src="assets/shot-inbox.jpg" alt="虚拟粉丝私信列表界面"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 权限与隐私 ===== -->
-<section class="section" id="privacy">
+<section class="section" id="privacy" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="kicker">PERMISSIONS &amp; PRIVACY</div>
       <h2 class="sec-title">只为 AI 互动而使用权限</h2>
-      <p class="sec-sub">HypeYo 可能请求相机、麦克风和语音识别权限，用于本地互动体验和 AI 虚拟反馈生成。我们不会提供真人直播服务，不会将你的相机画面公开推流，也不会把原始音频发布给其他真实用户。</p>
+      <p class="sec-sub">HypeYo 可能请求相机、麦克风和语音识别权限，仅用于本地互动体验和 AI 虚拟反馈生成。我们不提供真人直播服务，不会将相机画面公开推流，也不会把原始音频发布给其他真实用户。</p>
     </div>
     <div class="perm-grid reveal">
       <div class="perm">
@@ -430,23 +395,20 @@ footer{padding:44px 0 48px}
         <p>使用 Sign in with Apple 进行账号同步和数据恢复，我们不会收集你的 Apple ID 密码。</p>
       </div>
     </div>
-    <p class="perm-lead reveal">了解完整的数据处理方式，请阅读 <a href="privacy/" style="color:#8FD8FF;border-bottom:1px solid rgba(143,216,255,.4)">隐私政策</a> 与 <a href="terms/" style="color:#8FD8FF;border-bottom:1px solid rgba(143,216,255,.4)">用户协议</a>。</p>
+    <p class="perm-foot reveal">了解完整的数据处理方式，请阅读 <a href="privacy/">隐私政策</a> 与 <a href="terms/">用户协议</a>。</p>
   </div>
 </section>
 
-<!-- ===== TestFlight ===== -->
 <section class="tf" id="testflight">
-  <div class="tf-inner">
-    <div class="kicker" style="justify-content:center">TESTFLIGHT BETA</div>
+  <div class="tf-inner reveal">
     <h2 class="sec-title">加入 HypeYo TestFlight</h2>
     <p>HypeYo 目前处于测试阶段。我们正在验证 AI 互动、虚拟观众反馈、粉丝聊天、社群消息和账号同步体验。</p>
     <a class="btn btn-wait" href="#testflight">等待公开测试链接</a>
-    <p class="tf-note">公开 TestFlight 链接将在 Beta 审核通过后开放。<br>如有疑问，可邮件联系 <a href="mailto:2840404589@qq.com" style="color:#8FD8FF">2840404589@qq.com</a></p>
+    <p class="tf-note">公开 TestFlight 链接将在 Beta 审核通过后开放。<br>如有疑问，可邮件联系 <a href="mailto:2840404589@qq.com">2840404589@qq.com</a></p>
     <p class="tf-links">加入前建议阅读 <a href="privacy/">隐私政策</a> 和 <a href="terms/">用户协议</a></p>
   </div>
 </section>
 
-<!-- ===== 页脚 ===== -->
 <footer>
   <div class="wrap foot-inner">
     <div class="foot-brand"><img src="assets/logo-wordmark.png" alt="HypeYo"></div>
@@ -472,10 +434,9 @@ footer{padding:44px 0 48px}
       entries.forEach(function(e){
         if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
       });
-    },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
     nodes.forEach(function(n){obs.observe(n);});
   }
-  // 功能卡片光斑跟随
   document.querySelectorAll('.feat').forEach(function(card){
     card.addEventListener('mousemove',function(e){
       var r=card.getBoundingClientRect();
